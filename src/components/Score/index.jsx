@@ -4,7 +4,7 @@ import { ReactComponent as EmptyStar } from "../../assets/img/star.svg";
 import { ReactComponent as FilledStar } from "../../assets/img/filledStar.svg";
 
 export function Score({ score = 0 }) {
-  const emptyStarCount = 5 - score;
+  const emptyStarCount = 5 - Math.floor(score);
 
   return (
     <Container>

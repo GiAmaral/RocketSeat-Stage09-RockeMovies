@@ -2,7 +2,7 @@ import { FiPlus, FiX } from "react-icons/fi";
 
 import { Container } from "./styles";
 
-export function AddTag({ isNew, value, onClick, ...rest }) {
+export function AddTag({ isNew = false, value, onClick, ...rest }) {
   return (
     <Container isNew={isNew}>
       {isNew ? (

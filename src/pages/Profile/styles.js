@@ -30,6 +30,29 @@ export const ProfilePictureContainer = styled.div`
     width: 186px;
     height: 186px;
     border-radius: 50%;
+    object-fit: cover;
+  }
+
+  input {
+    display: none;
+  }
+
+  label {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: ${({ theme }) => theme.COLORS.PINK_900};
+    background-color: ${({ theme }) => theme.COLORS.PINK_500};
+
+    cursor: pointer;
   }
 `;
 
@@ -64,19 +87,4 @@ export const StyledInput = styled(Input)`
 export const StyledButton = styled(Button)`
   display: flex;
   justify-content: center;
-`;
-
-export const CameraButton = styled(Button)`
-  display: flex;
-  justify-content: center;
-
-  width: 48px;
-  height: 48px;
-
-  position: absolute;
-
-  bottom: 8px;
-  right: 8px;
-
-  border-radius: 50%;
 `;

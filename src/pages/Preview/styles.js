@@ -18,6 +18,7 @@ export const Container = styled.div`
 export const ActionsContainer = styled.div`
   grid-area: actions;
   justify-self: center;
+  justify-content: space-between;
   width: 1137px;
 
   margin: 40px 0 27px;

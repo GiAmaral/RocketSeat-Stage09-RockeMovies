@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./styles/global";
+import { ThemeProvider } from "styled-components";
+
+import { AuthProvider } from "./hooks/auth";
 
 import theme from "./styles/theme";
 
@@ -11,32 +13,45 @@ import { Profile } from "./pages/Profile";
 import { Preview } from "./pages/Preview";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+
+import { App } from "./layouts/App";
+import { Auth } from "./layouts/Auth";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "create",
+        element: <Create />,
+      },
+      {
+        path: "preview/:id",
+        element: <Preview />,
+      },
+    ],
   },
   {
-    path: "profile",
-    element: <Profile />,
-  },
-  {
-    path: "create",
-    element: <Create />,
-  },
-  {
-    path: "preview",
-    element: <Preview />,
-  },
-  {
-    path: "sign-in",
-    element: <SignIn />,
-  },
-  {
-    path: "sign-up",
-    element: <SignUp />,
+    element: <Auth />,
+    children: [
+      {
+        path: "sign-in",
+        element: <SignIn />,
+      },
+      {
+        path: "sign-up",
+        element: <SignUp />,
+      },
+    ],
   },
 ]);
 
@@ -44,7 +59,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
